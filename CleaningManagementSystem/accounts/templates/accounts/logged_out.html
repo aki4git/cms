@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block title %}ログアウト{% endblock title %}
+
+{% block content %}
+
+    <h3 class="page-header text-center">ログアウトしました</h3>
+    
+    <input class="btn btn-primary btn-lg btn-block" type="button" value="再ログイン" onClick="location.href='{% url 'login' %}'">
+
+{% endblock content %}
