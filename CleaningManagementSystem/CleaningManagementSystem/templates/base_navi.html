@@ -17,14 +17,14 @@
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav navbar-right">
       {% if user.username == "" %}
-        <li><a href="{% url 'login' %}">Login</a></li>
+        <li><a href="{% url 'accounts:login' %}">Login</a></li>
       {% else %}
         <li class="dropdown">
           {% with yesno_args=user.username|add:"," %}
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ user.username|yesno:yesno_args }} <span class="caret"></span></a>
           {% endwith %}
           <ul class="dropdown-menu" role="menu">
-            <li><a href="{% url 'logout' %}">Logout</a></li>
+            <li><a href="{% url 'accounts:logout' %}">Logout</a></li>
           </ul>
         </li>
       {% endif %}
