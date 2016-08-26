@@ -1,0 +1,35 @@
+{% extends "base_navi.html" %}
+
+{% block title %}清掃場所の一覧{% endblock title %}
+
+{% block extrahead %}
+<style>
+table {
+  margin-top: 8px;
+}
+</style>
+{% endblock %}
+
+{% block content %}
+    <h3 class="page-header">清掃場所の一覧</h3>
+    <table class="table table-striped table-bordered">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>清掃場所</th>
+          <th>操作</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for place in places %}
+        <tr>
+          <td>{{ place.id }}</td>
+          <td>{{ place.name }}</td>
+          <td>
+            <a href="{% url 'taskmanage:place_detail' place_id=place.id %}" class="btn btn-default btn-sm">詳細</a>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+{% endblock content %}
