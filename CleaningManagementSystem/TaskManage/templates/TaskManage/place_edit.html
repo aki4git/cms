@@ -1,0 +1,27 @@
+{% extends "base_navi.html" %}
+{% load bootstrap %}
+
+{% block title %}清掃場所の編集{% endblock title %}
+
+{% block content %}
+    {% if place_id %}
+    <h3 class="page-header">清掃場所の編集</h3>
+    <form action="{% url 'taskmanage:place_edit' place_id=place_id %}" method="post" class="form-horizontal" role="form">
+    {% else %}
+    <h3 class="page-header">清掃場所の追加</h3>
+    <form action="{% url 'taskmanage:place_add' %}" method="post" class="form-horizontal" role="form">
+    {% endif %}
+      {% csrf_token %}
+      {{ form|bootstrap_horizontal }}
+      <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+          <button type="submit" class="btn btn-primary">変更</button>
+        </div>
+      </div>
+    </form>
+    {% if place_id %}
+    <a href="{% url 'taskmanage:place_detail' place_id=place_id  %}">戻る</a>
+    {% else %}
+    <a href="{% url 'taskmanage:place_list' %}">戻る</a>
+    {% endif %}
+{% endblock content %}

@@ -1,0 +1,26 @@
+{% extends "base_navi.html" %}
+{% load bootstrap %}
+
+{% block title %}タスクの編集{% endblock title %}
+
+{% block content %}
+    <h3 class="page-header">タスクの編集</h3>
+    {% if task_id %}
+    <form action="{% url 'taskmanage:task_edit' place_id=place_id task_id=task_id %}" method="post" class="form-horizontal" role="form">
+    {% else %}
+    <form action="{% url 'taskmanage:task_add' place_id=place_id %}" method="post" class="form-horizontal" role="form">
+    {% endif %}
+      {% csrf_token %}
+      {{ form|bootstrap_horizontal }}
+      <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+          <button type="submit" class="btn btn-primary">変更</button>
+        </div>
+      </div>
+    </form>
+    {% if place_id %}
+    <a href="{% url 'taskmanage:place_detail' place_id=place_id  %}">戻る</a>
+    {% else %}
+    <a href="{% url 'taskmanage:place_list' %}">戻る</a>
+    {% endif %}
+{% endblock content %}

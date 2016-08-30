@@ -19,39 +19,37 @@ table {
 {% endblock %}
 
 {% block content %}
-    <h3 class="page-header">{{ place.name }}の詳細</h3>
+    <h3 class="page-header">{{ place.name }}の詳細 <small><a href="{% url 'taskmanage:place_edit' place_id=place.id %}" >編集</a></small></h3>
     <h4>清掃者の一覧</h4>
     <table class="table table-striped table-bordered">
       <thead>
         <tr>
-          <th>ID</th>
           <th>清掃者名</th>
         </tr>
       </thead>
       <tbody>
         {% for user in users %}
         <tr>
-          <td>{{ user.id }}</td>
           <td>{{ user.username }}</td>
         </tr>
         {% endfor %}
       </tbody>
     </table>
-    <h4>タスクの一覧</h4>
+    <h4>タスクの一覧<a href="{% url 'taskmanage:task_add' place_id=place.id %}" class="btn btn-xs btn-primary pull-right">追加</a></h4>
     <table class="table table-striped table-bordered">
       <thead>
         <tr>
-          <th>ID</th>
           <th>タスク名</th>
           <th>実施者</th>
+          <th>削除</th>
         </tr>
       </thead>
       <tbody>
         {% for task in tasks %}
         <tr>
-          <td>{{ task.id }}</td>
           <td>{{ task.name|linebreaksbr }}</td>
           <td>{{ task.user }}</td>
+          <td><a href="{% url 'taskmanage:task_del' place_id=place.id task_id=task.id %}" class="btn btn-primary btn-xs" >実行</a></td>
         </tr>
         {% endfor %}
       </tbody>
